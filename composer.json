@@ -33,12 +33,18 @@
     "scripts": {
         "phpcs": "phpcs -s",
         "phpstan": "phpstan",
-        "test": "phpunit"
+        "test": "phpunit",
+        "ci": [
+            "@phpcs",
+            "@phpstan",
+            "@test"
+        ]
     },
     "scripts-descriptions": {
         "phpcs": "PHP Code Sniffer run",
         "phpstan": "PHPStan run",
-        "test": "PHPUnit run"
+        "test": "PHPUnit run",
+        "ci": "Run all CI tests"
     },
     "config": {
         "preferred-install": "dist",
