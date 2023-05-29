@@ -9,5 +9,9 @@ return [
             'driver' => 'local',
             'root' => getcwd(),
         ],
+        'stubs' => [
+            'driver' => 'local',
+            'root' => __DIR__ . '/../stubs',
+        ],
     ],
 ];

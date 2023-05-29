@@ -5511,7 +5511,7 @@
             "dist": {
                 "type": "path",
                 "url": "../typesetter",
-                "reference": "5345a9361bb2f96334dd3cc0e6bb0d42f06bc6ea"
+                "reference": "750484b92b265f9a8ac86ff5aa2b8c62121e797b"
             },
             "require": {
                 "ext-dom": "*",
