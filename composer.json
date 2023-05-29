@@ -1,29 +1,21 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "name": "typesetterio/typesetter-cli",
+    "description": "Create PDFs from markdown with PHP.",
+    "homepage": "https://typesetter.io",
     "type": "project",
     "license": "MIT",
-    "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
-    },
-    "authors": [
-        {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "laravel-zero/framework": "^10.0.2",
         "nunomaduro/termwind": "^1.15.1"
     },
     "require-dev": {
-        "laravel/pint": "^1.8",
-        "mockery/mockery": "^1.5.1",
-        "pestphp/pest": "^2.5"
+        "nunomaduro/larastan": "^2.6",
+        "orchestra/testbench": "^8.5",
+        "phpunit/phpunit": "^10.1",
+        "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "^8.12",
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
         "psr-4": {
@@ -37,15 +29,25 @@
             "Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "phpcs": "phpcs -s",
+        "phpstan": "phpstan",
+        "test": "phpunit"
+    },
+    "scripts-descriptions": {
+        "phpcs": "PHP Code Sniffer run",
+        "phpstan": "PHPStan run",
+        "test": "PHPUnit run"
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "bin": ["application"]
+    "bin": ["typesetter"]
 }
