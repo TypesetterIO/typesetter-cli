@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90ebe42d1608ec405cc34826a6c3e0ee",
+    "content-hash": "b519224eef63f20ea4586a803bf18a08",
     "packages": [
         {
             "name": "brick/math",
@@ -5507,14 +5507,21 @@
         },
         {
             "name": "typesetterio/typesetter",
-            "version": "dev-main",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypesetterIO/typesetter.git",
+                "reference": "067dad73c7544fef39a67d6309cda0a3c7660ba1"
+            },
             "dist": {
-                "type": "path",
-                "url": "../typesetter",
-                "reference": "750484b92b265f9a8ac86ff5aa2b8c62121e797b"
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/067dad73c7544fef39a67d6309cda0a3c7660ba1",
+                "reference": "067dad73c7544fef39a67d6309cda0a3c7660ba1",
+                "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "ext-libxml": "*",
                 "illuminate/collections": "^10.12",
                 "illuminate/support": "^10.12",
                 "league/commonmark": "^2.4",
@@ -5535,30 +5542,17 @@
                     "Typesetterio\\Typesetter\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "phpcs": [
-                    "phpcs -s"
-                ],
-                "phpstan": [
-                    "phpstan"
-                ],
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "The main typesetter service for generating PDFs from Markdown for ebooks.",
             "homepage": "https://typesetter.io",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/TypesetterIO/typesetter/issues",
+                "source": "https://github.com/TypesetterIO/typesetter/tree/0.1.0"
+            },
+            "time": "2023-05-29T19:03:09+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -9723,7 +9717,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "typesetterio/typesetter": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
