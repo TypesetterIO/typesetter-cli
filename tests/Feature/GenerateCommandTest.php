@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class GenerateCommandTest extends TestCase
 {
-    public function xtestSuccessDefaultValues(): void
+    public function testSuccessDefaultValues(): void
     {
         Storage::fake();
         Storage::put('config.php', '<?php return [];');
