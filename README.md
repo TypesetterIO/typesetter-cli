@@ -2,6 +2,10 @@
     <img src="https://github.com/TypesetterIO/assets/blob/main/logos/v1/logo.png" height="100">
 </p>
 
+![License](https://img.shields.io/github/license/typesetterio/typesetter-cli?labelColor=5a94bd&color=00345c)
+![Packagist Downloads](https://img.shields.io/packagist/dm/typesetterio/typesetter-cli?labelColor=5a94bd&color=00345c)
+![Github Workflow Status](https://img.shields.io/github/actions/workflow/status/typesetterio/typesetter-cli/ci.yml?labelColor=5a94bd&color=00345c)
+
 # Typesetter
 
 Create ebooks, flyers, one-sheets and more from markdown! This command runs locally using PHP to convert your markdown into a PDF.
