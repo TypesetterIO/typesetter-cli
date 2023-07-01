@@ -19,5 +19,6 @@ return [
         new \Typesetterio\Typesetter\Observers\DefaultMarkdownConfiguration(),
         new \Typesetterio\Typesetter\Observers\FirstElementInChapterCSSClass(),
         new \Typesetterio\Typesetter\Observers\BreakToPageBreak(),
+        new \Typesetterio\Typesetter\Observers\Credits(),
     ],
 ];
