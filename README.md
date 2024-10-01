@@ -1,10 +1,11 @@
 <p align="center">
-    <img src="https://github.com/TypesetterIO/assets/blob/main/logos/v1/logo.png" height="100">
+    <img src=".github/assets/logo.png">
 </p>
-
-![License](https://img.shields.io/github/license/typesetterio/typesetter-cli?labelColor=5a94bd&color=00345c)
-![Packagist Downloads](https://img.shields.io/packagist/dm/typesetterio/typesetter-cli?labelColor=5a94bd&color=00345c)
-![Github Workflow Status](https://img.shields.io/github/actions/workflow/status/typesetterio/typesetter-cli/ci.yml?labelColor=5a94bd&color=00345c)
+<p align="center">
+    <img src="https://img.shields.io/github/license/typesetterio/typesetter-cli?labelColor=e7e5e4&color=292524" alt="License">
+    <img src="https://img.shields.io/packagist/dm/typesetterio/typesetter-cli?labelColor=e7e5e4&color=292524" alt="Packagist">
+    <img src="https://img.shields.io/github/actions/workflow/status/typesetterio/typesetter-cli/ci.yml?labelColor=e7e5e4&color=292524" alt="GitHub Workflow Status">
+</p>
 
 # Typesetter
 
@@ -25,7 +26,7 @@ The simplest way to use this would be like this:
 
 `vendor/bin/typesetter generate`
 
-To learn more, please check out the [documentation](https://docs.typesetter.io). This details configuration, customization, themes and cover generation, observers, listeners and more.
+To learn more, please check out the [documentation](https://typesetter.io). This details configuration, customization, themes and cover generation, observers, listeners and more.
 
 ## Credits
 

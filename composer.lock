@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc8d5393c233fbcac6c37bfd72b10371",
+    "content-hash": "3eb0960760b09617c360818433969ba7",
     "packages": [
         {
             "name": "brick/math",
@@ -5709,16 +5709,16 @@
         },
         {
             "name": "typesetterio/typesetter",
-            "version": "0.8.3",
+            "version": "0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypesetterIO/typesetter.git",
-                "reference": "c9207f450f37f9df06eb97d89f6880e983e2dad5"
+                "reference": "305da5fad42e9bb60d4e723d3f46ff59c1438094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/c9207f450f37f9df06eb97d89f6880e983e2dad5",
-                "reference": "c9207f450f37f9df06eb97d89f6880e983e2dad5",
+                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/305da5fad42e9bb60d4e723d3f46ff59c1438094",
+                "reference": "305da5fad42e9bb60d4e723d3f46ff59c1438094",
                 "shasum": ""
             },
             "require": {
@@ -5752,7 +5752,7 @@
             "homepage": "https://typesetter.io",
             "support": {
                 "issues": "https://github.com/TypesetterIO/typesetter/issues",
-                "source": "https://github.com/TypesetterIO/typesetter/tree/0.8.3"
+                "source": "https://github.com/TypesetterIO/typesetter/tree/0.9.1"
             },
             "funding": [
                 {
@@ -5760,7 +5760,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-02T15:52:38+00:00"
+            "time": "2024-10-01T22:25:49+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
