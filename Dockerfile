@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source=https://github.com/TypesetterIO/typesetter
 LABEL org.opencontainers.image.description="TypesetterIO creates PDFs from Markdown in a snap!"
 LABEL org.opencontainers.image.licenses=MIT
 
-WORKDIR /var/www/html
+WORKDIR /app
 
 RUN apk add --no-cache $PHPIZE_DEPS \
     freetype-dev \
@@ -21,4 +21,6 @@ COPY . .
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
 
-ENTRYPOINT ["php", "typesetter"]
+WORKDIR /runtime
+
+ENTRYPOINT ["php", "/app/typesetter"]
