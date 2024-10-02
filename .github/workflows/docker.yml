@@ -28,6 +28,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: .
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: |
             ghcr.io/typesetterio/typesetter-cli:${{ github.sha }}
             ghcr.io/typesetterio/typesetter-cli:latest
