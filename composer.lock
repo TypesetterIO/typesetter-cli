@@ -5709,21 +5709,22 @@
         },
         {
             "name": "typesetterio/typesetter",
-            "version": "0.11.0",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypesetterIO/typesetter.git",
-                "reference": "c63297baa9e24405aa24f3caae3de01c3a7ceb3c"
+                "reference": "5a26c439c8402c3fb13835a342771a88e2215c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/c63297baa9e24405aa24f3caae3de01c3a7ceb3c",
-                "reference": "c63297baa9e24405aa24f3caae3de01c3a7ceb3c",
+                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/5a26c439c8402c3fb13835a342771a88e2215c8c",
+                "reference": "5a26c439c8402c3fb13835a342771a88e2215c8c",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
+                "ext-mbstring": "*",
                 "illuminate/collections": "^10.12|^11.0|^12.0|^13.0",
                 "illuminate/support": "^10.12|^11.0|^12.0|^13.0",
                 "league/commonmark": "^2.4",
@@ -5752,7 +5753,7 @@
             "homepage": "https://typesetter.io",
             "support": {
                 "issues": "https://github.com/TypesetterIO/typesetter/issues",
-                "source": "https://github.com/TypesetterIO/typesetter/tree/0.11.0"
+                "source": "https://github.com/TypesetterIO/typesetter/tree/0.11.1"
             },
             "funding": [
                 {
@@ -5760,7 +5761,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-30T18:00:15+00:00"
+            "time": "2026-09-29T22:31:57+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
