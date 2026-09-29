@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eb0960760b09617c360818433969ba7",
+    "content-hash": "2b5f1f8fb7c7bd8d2117b803206f2d33",
     "packages": [
         {
             "name": "brick/math",
@@ -5709,31 +5709,31 @@
         },
         {
             "name": "typesetterio/typesetter",
-            "version": "0.9.1",
+            "version": "0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypesetterIO/typesetter.git",
-                "reference": "305da5fad42e9bb60d4e723d3f46ff59c1438094"
+                "reference": "c63297baa9e24405aa24f3caae3de01c3a7ceb3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/305da5fad42e9bb60d4e723d3f46ff59c1438094",
-                "reference": "305da5fad42e9bb60d4e723d3f46ff59c1438094",
+                "url": "https://api.github.com/repos/TypesetterIO/typesetter/zipball/c63297baa9e24405aa24f3caae3de01c3a7ceb3c",
+                "reference": "c63297baa9e24405aa24f3caae3de01c3a7ceb3c",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
-                "illuminate/collections": "^10.12",
-                "illuminate/support": "^10.12",
+                "illuminate/collections": "^10.12|^11.0|^12.0|^13.0",
+                "illuminate/support": "^10.12|^11.0|^12.0|^13.0",
                 "league/commonmark": "^2.4",
                 "mpdf/mpdf": "^8.1",
-                "php": "^8.1",
+                "php": "^8.3",
                 "spatie/commonmark-highlighter": "^3.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.1",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^12.0",
                 "roave/security-advisories": "dev-latest",
                 "slevomat/coding-standard": "^8.12",
                 "squizlabs/php_codesniffer": "^3.7"
@@ -5752,7 +5752,7 @@
             "homepage": "https://typesetter.io",
             "support": {
                 "issues": "https://github.com/TypesetterIO/typesetter/issues",
-                "source": "https://github.com/TypesetterIO/typesetter/tree/0.9.1"
+                "source": "https://github.com/TypesetterIO/typesetter/tree/0.11.0"
             },
             "funding": [
                 {
@@ -5760,7 +5760,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-01T22:25:49+00:00"
+            "time": "2026-04-30T18:00:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -9944,6 +9944,6 @@
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
