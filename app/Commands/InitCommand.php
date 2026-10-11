@@ -29,10 +29,15 @@ class InitCommand extends Command
         // @phpstan-ignore argument.type (the stub ships with the application)
         Storage::put('config.php', Storage::disk('stubs')->get('config.php'));
 
-        $contentPath = Storage::path('content/01.md');
-        $this->comment('Generating ' . $contentPath);
+        $welcomePath = Storage::path('content/01-welcome.md');
+        $this->comment('Generating ' . $welcomePath);
         // @phpstan-ignore argument.type (the stub ships with the application)
-        Storage::put('content/01.md', Storage::disk('stubs')->get('content-01.md'));
+        Storage::put('content/01-welcome.md', Storage::disk('stubs')->get('content-01-welcome.md'));
+
+        $formattingPath = Storage::path('content/02-formatting.md');
+        $this->comment('Generating ' . $formattingPath);
+        // @phpstan-ignore argument.type (the stub ships with the application)
+        Storage::put('content/02-formatting.md', Storage::disk('stubs')->get('content-02-formatting.md'));
 
         $themePath = Storage::path('my-theme/theme.html');
         $this->comment('Generating ' . $themePath);
@@ -40,6 +45,9 @@ class InitCommand extends Command
         Storage::put('my-theme/theme.html', Storage::disk('stubs')->get('theme.html'));
 
         $this->info('Success!');
+        $this->newLine();
+        $this->line('Run the generate command to build the PDF.');
+        $this->line('Documentation: https://typesetter.io');
 
         return self::SUCCESS;
     }

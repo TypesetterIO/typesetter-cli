@@ -15,4 +15,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `--version` reports the installed package version.
 - `init` refuses to overwrite an existing `config.php`.
 - The `init` stub config uses `FirstElementInChapterCssClass` and sets `toc-levels`.
+- `init` writes a two chapter starter book with more options.
 - The Docker image runs PHP 8.5 CLI as a non-root user (uid 1000) and is tagged with the release version.

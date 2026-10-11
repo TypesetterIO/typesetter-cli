@@ -1,15 +1,78 @@
 <style>
     body {
-        background: #f4f4f4;
+        font-size: 11pt;
+        line-height: 1.5;
         color: #232323;
     }
 
-    h1 {
+    h1, h2 {
         color: #002266;
     }
 
-    .credits-box {
+    h1 {
+        font-size: 26pt;
+        margin-bottom: 6pt;
+    }
+
+    h2 {
+        font-size: 15pt;
+        margin-top: 18pt;
+    }
+
+    /* First element of every chapter after the first (FirstElementInChapterCssClass observer) */
+
+    .chapter-beginning {
         page-break-before: always;
+    }
+
+    /* Code */
+
+    code {
+        font-family: dejavusansmono;
+        font-size: 9pt;
+    }
+
+    pre {
+        font-family: dejavusansmono;
+        font-size: 9pt;
+        background-color: #f4f4f4;
+        border-left: 3pt solid #002266;
+        padding: 8pt 10pt;
+        page-break-inside: avoid;
+    }
+
+    .hl-comment {
+        color: #6a737d;
+        font-style: italic;
+    }
+
+    .hl-keyword, .hl-operator, .hl-literal {
+        color: #b3261e;
+    }
+
+    .hl-value, .hl-attribute {
+        color: #1f7a36;
+    }
+
+    .hl-number, .hl-variable {
+        color: #9a5b00;
+    }
+
+    .hl-type, .hl-property, .hl-generic {
+        color: #0050a8;
+    }
+
+    blockquote {
+        margin: 0 0 11pt 0;
+        padding: 6pt 12pt;
+        border-left: 3pt solid #cccccc;
+        font-style: italic;
+        color: #555555;
+    }
+
+    .credits-box {
+        margin-top: 30pt;
         text-align: center;
+        color: #555555;
     }
 </style>

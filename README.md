@@ -29,7 +29,7 @@ Start a new project in the current directory:
 
 `vendor/bin/typesetter init`
 
-This writes `config.php`, `content/01.md` and `my-theme/theme.html`.
+This writes `config.php`, a two chapter starter book in `content/` and `my-theme/theme.html`.
 
 Generate the PDF:
 
