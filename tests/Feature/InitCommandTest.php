@@ -26,9 +26,9 @@ class InitCommandTest extends TestCase
 
         Storage::assertExists('config.php');
         self::assertEquals('some-config-content', Storage::get('config.php'));
-        Storage::assertExists('config.php');
+        Storage::assertExists('content/01.md');
         self::assertEquals('some-content', Storage::get('content/01.md'));
-        Storage::assertExists('config.php');
+        Storage::assertExists('my-theme/theme.html');
         self::assertEquals('theme-html', Storage::get('my-theme/theme.html'));
     }
 

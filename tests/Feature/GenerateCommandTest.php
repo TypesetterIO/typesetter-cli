@@ -11,7 +11,7 @@ class GenerateCommandTest extends TestCase
 {
     private string $cwd;
 
-    // testSuccessDefaultValues chdir()s to exercise the "." defaults
+    // tests chdir() because the library resolves theme and content against the cwd
     protected function setUp(): void
     {
         parent::setUp();
@@ -35,11 +35,63 @@ class GenerateCommandTest extends TestCase
 
         $this->artisan('generate')
             ->expectsOutput('Welcome to Typesetter!')
+            ->expectsOutput('Loading config: config.php')
+            ->expectsOutput('Starting typesetting')
+            ->expectsOutput('Markdown initialized.')
+            ->expectsOutput('PDF initialized.')
+            ->expectsOutput('Theme added.')
+            ->expectsOutput('Cover automatically generated.')
+            ->expectsOutput('Table of contents generated.')
+            ->expectsOutput('Footer added.')
+            ->expectsOutput('Converting chapters.')
             ->expectsOutput('Rendering PDF.')
+            ->expectsOutput('Finished rendering.')
+            ->expectsOutput('Writing PDF')
             ->expectsOutput('Done!')
             ->assertSuccessful();
 
-        Storage::assertExists('my-typeset-book.pdf');
+        self::assertStringStartsWith('%PDF', (string) Storage::get('my-typeset-book.pdf'));
+    }
+
+    public function testGeneratesFromInitFiles(): void
+    {
+        Storage::fake();
+
+        $this->artisan('init')->assertSuccessful();
+
+        chdir(Storage::path(''));
+
+        $this->artisan('generate')->assertSuccessful();
+
+        self::assertStringStartsWith('%PDF', (string) Storage::get('the-book-title.pdf'));
+    }
+
+    public function testCoverHtmlAndTitleSlug(): void
+    {
+        Storage::fake();
+        Storage::put('specific/theme.html', '<style></style>');
+        Storage::put('specific/cover.html', '<h1>Cover</h1>');
+        Storage::put('specific/content/01.md', '# Chapter');
+        Storage::put('config.php', '<?php return ["theme" => __DIR__ . "/specific", "content" => __DIR__ . "/specific/content", "title" => "It\'s a Book: Part 2!"];');
+
+        $this->artisan('generate')
+            ->expectsOutput('Cover HTML added.')
+            ->assertSuccessful();
+
+        Storage::assertExists('its-a-book-part-2.pdf');
+    }
+
+    public function testCoverImage(): void
+    {
+        Storage::fake();
+        Storage::put('specific/theme.html', '<style></style>');
+        Storage::put('specific/cover.jpg', (string) file_get_contents(__DIR__ . '/../data/cover.jpg'));
+        Storage::put('specific/content/01.md', '# Chapter');
+        Storage::put('config.php', '<?php return ["theme" => __DIR__ . "/specific", "content" => __DIR__ . "/specific/content"];');
+
+        $this->artisan('generate')
+            ->expectsOutput('Cover image added.')
+            ->assertSuccessful();
     }
 
     public function testSuccessSpecifyingConfigAndOutput(): void
@@ -47,9 +99,7 @@ class GenerateCommandTest extends TestCase
         Storage::fake();
         Storage::put('specific/theme.html', '<style></style>');
         Storage::put('specific/content/01.md', '# Chapter');
-        $theme = Storage::path('specific');
-        $content = Storage::path('specific/content');
-        Storage::put('specific/my-config.php', '<?php return ["theme" => "' . $theme . '", "content" => "' . $content . '"];');
+        Storage::put('specific/my-config.php', '<?php return ["theme" => __DIR__, "content" => __DIR__ . "/content"];');
 
         $this->artisan('generate', [
             '--config' => './specific/my-config.php',
@@ -60,10 +110,10 @@ class GenerateCommandTest extends TestCase
             ->expectsOutput('Done!')
             ->assertSuccessful();
 
-        Storage::assertExists('my-output/file.pdf');
+        self::assertStringStartsWith('%PDF', (string) Storage::get('my-output/file.pdf'));
     }
 
-    public function testThrowsExceptionIfConfigNotFound(): void
+    public function testFailsIfConfigNotFound(): void
     {
         Storage::fake();
 
