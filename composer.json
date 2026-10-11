@@ -16,7 +16,7 @@
     },
     "require": {
         "php": "^8.4",
-        "laravel-zero/foundation": "^13.23",
+        "laravel-zero/foundation": "^13.23.1",
         "laravel-zero/framework": "^13.0",
         "typesetterio/typesetter": "^1.0"
     },
