@@ -1,1 +1,10 @@
 vendor/
+.git
+.github
+tests
+storage
+coverage
+.idea
+.vscode
+.php-cs-fixer.cache
+.phpunit.cache

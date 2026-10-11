@@ -63,7 +63,7 @@ jobs:
         include:
           - php: '8.4'
             dependencies: lowest
-          - php: '8.4'
+          - php: '8.5'
             dependencies: locked
 
     steps:
