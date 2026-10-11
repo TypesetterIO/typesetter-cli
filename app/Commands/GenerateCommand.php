@@ -60,7 +60,7 @@ class GenerateCommand extends Command
             $this->comment('Starting typesetting');
         });
 
-        $typesetter->listen(Events\PDFInitialized::class, function () {
+        $typesetter->listen(Events\PdfInitialized::class, function () {
             $this->comment('Markdown and PDF initialized');
         });
 
@@ -74,7 +74,7 @@ class GenerateCommand extends Command
             $this->comment('Cover automatically generated.');
         });
 
-        $typesetter->listen(Events\PDFRendering::class, function () {
+        $typesetter->listen(Events\PdfRendering::class, function () {
             $this->comment('Rendering PDF.');
         });
 

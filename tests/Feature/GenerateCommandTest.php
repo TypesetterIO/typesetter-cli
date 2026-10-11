@@ -10,6 +10,23 @@ use Tests\TestCase;
 
 class GenerateCommandTest extends TestCase
 {
+    private string $cwd;
+
+    // testSuccessDefaultValues chdir()s to exercise the "." defaults
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->cwd = (string) getcwd();
+    }
+
+    protected function tearDown(): void
+    {
+        chdir($this->cwd);
+
+        parent::tearDown();
+    }
+
     public function testSuccessDefaultValues(): void
     {
         Storage::fake();
@@ -19,6 +36,7 @@ class GenerateCommandTest extends TestCase
 
         $this->artisan('generate')
             ->expectsOutput('Welcome to Typesetter!')
+            ->expectsOutput('Rendering PDF.')
             ->expectsOutput('Done!')
             ->assertSuccessful();
 
@@ -29,14 +47,17 @@ class GenerateCommandTest extends TestCase
     {
         Storage::fake();
         Storage::put('specific/theme.html', '<style></style>');
+        Storage::put('specific/content/01.md', '# Chapter');
         $theme = Storage::path('specific');
-        Storage::put('specific/my-config.php', '<?php return ["theme" => "' . $theme . '"];');
+        $content = Storage::path('specific/content');
+        Storage::put('specific/my-config.php', '<?php return ["theme" => "' . $theme . '", "content" => "' . $content . '"];');
 
         $this->artisan('generate', [
             '--config' => './specific/my-config.php',
             '--output' => './my-output/file.pdf',
         ])
             ->expectsOutput('Welcome to Typesetter!')
+            ->expectsOutput('Rendering PDF.')
             ->expectsOutput('Done!')
             ->assertSuccessful();
 
@@ -55,6 +76,4 @@ class GenerateCommandTest extends TestCase
         ])
             ->assertFailed();
     }
-
-    // Is there any suitable way to test the listeners are registered? hrm...
 }
