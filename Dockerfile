@@ -1,3 +1,5 @@
+FROM composer:2.10.3 AS composer
+
 FROM php:8.5.11-cli-alpine3.24
 
 LABEL org.opencontainers.image.source=https://github.com/TypesetterIO/typesetter-cli
@@ -18,9 +20,8 @@ RUN apk add --no-cache \
         libjpeg-turbo-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && apk del .build-deps
-
-COPY --from=composer:2.10.3 /usr/bin/composer /usr/bin/composer
+    && apk del .build-deps \
+    && echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/typesetter.ini"
 
 COPY . .
 
@@ -28,7 +29,9 @@ ARG VERSION=dev-main
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV COMPOSER_ROOT_VERSION=$VERSION
-RUN composer install --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
+RUN --mount=type=bind,from=composer,source=/usr/bin/composer,target=/usr/bin/composer \
+    --mount=type=cache,target=/root/.composer/cache \
+    composer install --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
 
 WORKDIR /runtime
 
