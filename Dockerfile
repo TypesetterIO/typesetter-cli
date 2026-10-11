@@ -33,6 +33,9 @@ RUN --mount=type=bind,from=composer,source=/usr/bin/composer,target=/usr/bin/com
     --mount=type=cache,target=/root/.composer/cache \
     composer install --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
 
+RUN adduser -D -u 1000 typesetter
+USER typesetter
+
 WORKDIR /runtime
 
 ENTRYPOINT ["php", "/app/typesetter"]
