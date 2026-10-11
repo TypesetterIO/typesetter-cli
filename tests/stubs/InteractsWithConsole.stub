@@ -1,0 +1,15 @@
+<?php
+
+namespace Illuminate\Foundation\Testing\Concerns;
+
+trait InteractsWithConsole
+{
+    /**
+     * @param string $command
+     * @param array<string, mixed> $parameters
+     * @return \Illuminate\Testing\PendingCommand
+     */
+    public function artisan($command, $parameters = [])
+    {
+    }
+}

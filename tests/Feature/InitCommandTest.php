@@ -31,4 +31,17 @@ class InitCommandTest extends TestCase
         Storage::assertExists('config.php');
         self::assertEquals('theme-html', Storage::get('my-theme/theme.html'));
     }
+
+    public function testDoesNotOverwriteExistingConfig(): void
+    {
+        Storage::fake('local');
+        Storage::put('config.php', 'original');
+
+        $this->artisan(InitCommand::class)
+            ->expectsOutput('config.php already exists, not overwriting.')
+            ->assertFailed();
+
+        self::assertEquals('original', Storage::get('config.php'));
+        Storage::assertMissing('content/01.md');
+    }
 }

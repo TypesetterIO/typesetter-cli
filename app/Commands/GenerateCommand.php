@@ -10,13 +10,14 @@ use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 use Typesetterio\Typesetter\Config;
 use Typesetterio\Typesetter\Events;
+use Typesetterio\Typesetter\Exceptions\InvalidConfigException;
 use Typesetterio\Typesetter\Typesetter;
 
 class GenerateCommand extends Command
 {
-    protected $signature = 'generate' .
-    ' {--config=config.php : The name and path to config file in relation to the current working directory.}' .
-    ' {--output= : The name and path to output PDF file in relation to the current working directory. By default slug version of title.}';
+    protected $signature = 'generate'
+        . ' {--config=config.php : The name and path to config file in relation to the current working directory.}'
+        . ' {--output= : The name and path to output PDF file in relation to the current working directory. By default slug version of title.}';
 
     protected $description = 'Generates the book content into a PDF.';
 
@@ -27,9 +28,15 @@ class GenerateCommand extends Command
 
         $this->registerListeners($service);
 
-        $config = $this->getConfig();
+        try {
+            $config = $this->getConfig();
 
-        $pdfBinary = $service->generate($config);
+            $pdfBinary = $service->generate($config);
+        } catch (ConfigException|InvalidConfigException $e) {
+            $this->error($e->getMessage());
+
+            return self::FAILURE;
+        }
 
         $this->newLine();
         $this->line('Writing PDF');
@@ -43,14 +50,18 @@ class GenerateCommand extends Command
     protected function getConfig(): Config
     {
         $configOption = $this->option('config');
+        if ($configOption === null) {
+            throw new ConfigException('The --config option needs a value.');
+        }
         $this->line('Loading config: ' . $configOption);
         $this->newLine();
 
         $configFile = Storage::path($configOption);
         if (Storage::missing($configOption)) {
-            throw new ConfigException('Cannot find the config file at: ' . $configFile);
+            throw new ConfigException('Cannot find the config file at: ' . $configFile . '. Pass --config=<file> or run `typesetter init` to create one.');
         }
 
+        // @phpstan-ignore argument.type (Config validates the array the config file returns)
         return new Config(require $configFile);
     }
 
@@ -60,8 +71,16 @@ class GenerateCommand extends Command
             $this->comment('Starting typesetting');
         });
 
+        $typesetter->listen(Events\MarkdownInitialized::class, function () {
+            $this->comment('Markdown initialized.');
+        });
+
         $typesetter->listen(Events\PdfInitialized::class, function () {
-            $this->comment('Markdown and PDF initialized');
+            $this->comment('PDF initialized.');
+        });
+
+        $typesetter->listen(Events\ThemeAdded::class, function () {
+            $this->comment('Theme added.');
         });
 
         $typesetter->listen(Events\CoverImageAdded::class, function () {
@@ -72,6 +91,18 @@ class GenerateCommand extends Command
         });
         $typesetter->listen(Events\CoverGenerated::class, function () {
             $this->comment('Cover automatically generated.');
+        });
+
+        $typesetter->listen(Events\TocGenerated::class, function () {
+            $this->comment('Table of contents generated.');
+        });
+
+        $typesetter->listen(Events\FooterGenerated::class, function () {
+            $this->comment('Footer added.');
+        });
+
+        $typesetter->listen(Events\ContentGenerating::class, function () {
+            $this->comment('Converting chapters.');
         });
 
         $typesetter->listen(Events\PdfRendering::class, function () {

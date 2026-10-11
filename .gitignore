@@ -1,6 +1,7 @@
 /vendor
 /.idea
 /.vscode
-/.vagrant
-.phpunit.result.cache
-/storage/framework
+/storage
+/coverage
+.php-cs-fixer.cache
+.phpunit.cache/

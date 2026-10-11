@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Exceptions\ConfigException;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -66,14 +65,33 @@ class GenerateCommandTest extends TestCase
 
     public function testThrowsExceptionIfConfigNotFound(): void
     {
-        $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('Cannot find the config file');
-
         Storage::fake();
 
         $this->artisan('generate', [
             '--config' => './my-config.php',
         ])
+            ->expectsOutputToContain('Cannot find the config file')
+            ->assertFailed();
+    }
+
+    public function testFailsIfConfigOptionHasNoValue(): void
+    {
+        Storage::fake();
+
+        $this->artisan('generate', [
+            '--config' => null,
+        ])
+            ->expectsOutputToContain('The --config option needs a value.')
+            ->assertFailed();
+    }
+
+    public function testFailsOnInvalidConfig(): void
+    {
+        Storage::fake();
+        Storage::put('config.php', "<?php return ['bogus' => 1];");
+
+        $this->artisan('generate')
+            ->expectsOutputToContain('Unknown config key(s): bogus')
             ->assertFailed();
     }
 }
