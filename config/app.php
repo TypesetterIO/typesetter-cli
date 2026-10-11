@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Providers\AppServiceProvider;
+use Composer\InstalledVersions;
+
 return [
 
     /*
@@ -15,7 +18,7 @@ return [
     |
     */
 
-    'name' => 'Application',
+    'name' => 'Typesetter',
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +31,7 @@ return [
     |
     */
 
-    'version' => app('git.version'),
+    'version' => InstalledVersions::getPrettyVersion('typesetterio/typesetter-cli'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,19 +49,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Timezone
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. We have gone
-    | ahead and set this to a sensible default for you out of the box.
-    |
-    */
-
-    'timezone' => 'UTC',
-
-    /*
-    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -69,7 +59,7 @@ return [
     */
 
     'providers' => [
-        App\Providers\AppServiceProvider::class,
+        AppServiceProvider::class,
     ],
 
 ];
