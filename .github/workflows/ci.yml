@@ -26,6 +26,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Hadolint
+        uses: hadolint/hadolint-action@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
+
       - name: Setup PHP 8.5
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:

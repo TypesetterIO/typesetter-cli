@@ -4,7 +4,7 @@ WORKFLOW = .github/workflows/ci.yml
 ACT_IMAGE = ubuntu-latest=shivammathur/node:latest
 
 .DEFAULT_GOAL := help
-.PHONY: help install phpcs phpcs-fix phpstan test coverage ci act
+.PHONY: help install phpcs phpcs-fix phpstan hadolint test coverage ci act
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-10s %s\n", $$1, $$2}'
@@ -21,13 +21,16 @@ phpcs-fix: ## PHP CS Fixer fix
 phpstan: ## PHPStan
 	$(PHP) vendor/bin/phpstan analyse
 
+hadolint: ## hadolint on the Dockerfile
+	hadolint Dockerfile
+
 test: ## PHPUnit
 	$(PHP) vendor/bin/phpunit
 
 coverage: ## HTML coverage report in coverage/ (needs Xdebug)
 	XDEBUG_MODE=coverage $(PHP) vendor/bin/phpunit --coverage-html coverage --path-coverage
 
-ci: phpcs phpstan test ## phpcs, phpstan, test in order
+ci: hadolint phpcs phpstan test ## hadolint, phpcs, phpstan, test in order
 
 act: ## Run the CI matrix in Docker (PHP_VERSION=8.4 for one cell)
 	act workflow_dispatch -W $(WORKFLOW) -P $(ACT_IMAGE) $(if $(PHP_VERSION),--matrix php:$(PHP_VERSION))

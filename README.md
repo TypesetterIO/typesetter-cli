@@ -52,7 +52,7 @@ To learn more, please check out the [documentation](https://typesetter.io). This
 
 ## Development
 
-Requires PHP 8.4 or newer and Composer. `make act` additionally needs Docker and [act](https://nektosact.com). On macOS, `brew install php composer act`.
+Requires PHP 8.4 or newer, Composer, and [hadolint](https://github.com/hadolint/hadolint). `make act` additionally needs Docker and [act](https://nektosact.com). On macOS, `brew install php composer hadolint act`.
 
 Run `make` to list the available targets.
 

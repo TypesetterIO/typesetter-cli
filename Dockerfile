@@ -34,7 +34,7 @@ RUN --mount=type=bind,from=composer,source=/usr/bin/composer,target=/usr/bin/com
     composer install --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
 
 RUN adduser -D -u 1000 typesetter
-USER typesetter
+USER 1000
 
 WORKDIR /runtime
 
