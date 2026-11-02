@@ -1,6 +1,6 @@
 FROM composer:2.10.3 AS composer
 
-FROM php:8.5.11-cli-alpine3.24
+FROM php:8.5.12-cli-alpine3.24
 
 LABEL org.opencontainers.image.source=https://github.com/TypesetterIO/typesetter-cli
 LABEL org.opencontainers.image.description="TypesetterIO creates PDFs from Markdown in a snap!"
